@@ -18,53 +18,54 @@ export default function SummaryCard({ scores, onRestart }) {
 
   const verdictColor =
     avg >= 8
-      ? "bg-green-100 text-green-800 border-green-200"
+      ? "bg-green-500/20 text-green-400 border-green-500/30"
       : avg >= 6
-      ? "bg-blue-100 text-blue-800 border-blue-200"
+      ? "bg-blue-500/20 text-blue-400 border-blue-500/30"
       : avg >= 4
-      ? "bg-yellow-100 text-yellow-800 border-yellow-200"
-      : "bg-red-100 text-red-800 border-red-200";
+      ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
+      : "bg-red-500/20 text-red-400 border-red-500/30";
 
   return (
-    <Card className="max-w-lg mx-auto mt-10 fade-up">
-      <CardContent className="pt-8 space-y-8">
+    <Card className="max-w-2xl mx-auto mt-10 fade-up bg-gray-900 border-2 border-gray-800 shadow-2xl shadow-cyan-500/10">
+      <CardContent className="pt-10 pb-10 space-y-10">
         {/* Header */}
-        <div className="text-center space-y-2">
-          <p className="text-xs font-mono text-muted-foreground uppercase tracking-widest">
+        <div className="text-center space-y-4">
+          <p className="text-sm font-mono text-gray-400 uppercase tracking-widest">
             Session Complete
           </p>
           <div>
-            <span className="text-7xl font-light">{avg}</span>
-            <span className="text-2xl text-muted-foreground">/10</span>
+            <span className="text-8xl font-light text-white">{avg}</span>
+            <span className="text-3xl text-gray-400">/10</span>
           </div>
-          <Badge className={`${verdictColor} font-mono text-sm px-4 py-1`}>
+          <Badge className={`${verdictColor} font-mono text-lg px-6 py-2`}>
             {verdict}
           </Badge>
         </div>
 
-        <Separator />
+        <Separator className="bg-gray-800" />
 
         {/* Per-question score breakdown */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           {scores.map((s, i) => (
-            <div key={i} className="flex items-center gap-3">
-              <span className="text-xs font-mono text-muted-foreground w-6">
+            <div key={i} className="flex items-center gap-4">
+              <span className="text-base font-mono text-gray-400 w-12">
                 Q{i + 1}
               </span>
-              <Progress value={s * 10} className="flex-1 h-2 [&>div]:bg-brand" />
-              <span className="text-sm font-mono w-10 text-right">{s}/10</span>
+              <Progress value={s * 10} className="flex-1 h-3 bg-gray-800 [&>div]:bg-gradient-to-r [&>div]:from-cyan-500 [&>div]:to-purple-500 [&>div]:rounded-full" />
+              <span className="text-base font-mono w-14 text-right text-white font-semibold">{s}/10</span>
             </div>
           ))}
         </div>
 
-        <Separator />
+        <Separator className="bg-gray-800" />
 
         {/* CTA */}
-        <div className="flex justify-center">
+        <div className="flex justify-center pt-2">
           <Button
             variant="outline"
+            size="lg"
             onClick={onRestart}
-            className="font-mono border-brand text-brand hover:bg-brand-light"
+            className="font-mono text-base border-2 border-cyan-500 text-cyan-400 hover:bg-cyan-500/10 px-8 py-6"
           >
             ← New Session
           </Button>
